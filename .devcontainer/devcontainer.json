@@ -1,0 +1,27 @@
+// Ambiente para os projetos da Rails Girls São Paulo no GitHub Codespaces.
+// Baseado em github/codespaces-rails (licença MIT).
+{
+  "name": "Rails Girls SP",
+  // Ruby 4.0 numa imagem já pronta para Codespaces e VS Code. Ela pode
+  // demorar algumas semanas para receber a correção mais recente do Ruby.
+  "image": "mcr.microsoft.com/devcontainers/ruby:4-4.0",
+
+  // Instala a última versão do Rails quando o codespace é criado.
+  // O app em si é criado pela participante, com `rails new .`.
+  "postCreateCommand": "gem install rails",
+
+  // Libera o endereço do Codespaces (*.app.github.dev) no Rails em
+  // desenvolvimento, para evitar o erro "Blocked hosts".
+  "containerEnv": {
+    "RAILS_DEVELOPMENT_HOSTS": ".app.github.dev"
+  },
+
+  // Mostra o aviso "Open in Browser" quando o servidor liga na porta 3000.
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "App",
+      "onAutoForward": "notify"
+    }
+  }
+}
