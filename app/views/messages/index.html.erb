@@ -1,10 +1,22 @@
 <h1>Mural de Recado</h1>
+
 <%= link_to "Novo recado", new_message_path %>
+
+<% if @messages.empty? %>
+
+    <p>Ainda não tem nenhum recado. Que tal postar o primeiro?</p>
+
+<% end %>
 
 <% @messages.each do |message| %>
 
     <div>
         <p><%= message.content %></p>
         <p>- <%= message.author %></p>
+
+        <%= link_to "Editar", edit_message_path(message) %>
+
+        <%= button_to "Apagar", message, method: :delete , form: { data: { turbo_confirm: "Quer mesmo apagar este recado?" } }%>
     </div>
+
 <% end %>

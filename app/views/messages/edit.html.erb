@@ -1,0 +1,16 @@
+<h1>Corrigir recado</h1>
+
+<%= form_with model: @message do |form| %>
+<div>
+
+    <%= form.label :author, "Seu nome" %>
+    <%= form.text_field :author %>
+</div>
+<div>
+    <%= form.label :content, "Recado" %>
+    <%= form.text_area :content %>
+</div>
+<%= form.submit "Salvar" %>
+<% end %>
+
+<%= link_to "Voltar", root_path %>
