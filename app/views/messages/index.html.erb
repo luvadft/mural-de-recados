@@ -1,22 +1,33 @@
-<h1>Mural de Recado</h1>
+<section class="section">
+    <div class="container">
+        <h1 class="title">Mural de Recado</h1>
 
-<%= link_to "Novo recado", new_message_path %>
+        <%= link_to "Novo recado", new_message_path, class: "button is-primary mb-5" %>
 
-<% if @messages.empty? %>
+        <% if @messages.empty? %>
 
-    <p>Ainda não tem nenhum recado. Que tal postar o primeiro?</p>
+            <p>Ainda não tem nenhum recado. Que tal postar o primeiro?</p>
 
-<% end %>
+        <% end %>
 
-<% @messages.each do |message| %>
+        <div class="columns is-multiline">
+            <% @messages.each do |message| %>
+                <div class="column is-one-quarter">
+                    <div class="card has-background-warning-light">
+                        <div class="card-content">
+                            <p><%= message.content %></p>
+                            <p class="is-italic">- <%= message.author %></p>
+                            <div class="buttons mt-4">
 
-    <div>
-        <p><%= message.content %></p>
-        <p>- <%= message.author %></p>
+                                <%= link_to "Editar", edit_message_path(message), class: "button is-small" %>
 
-        <%= link_to "Editar", edit_message_path(message) %>
+                                <%= button_to "Apagar", message, method: :delete , class: "button is-small is-danger", form: { data: { turbo_confirm: "Quer mesmo apagar este recado?" } }%>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <%= button_to "Apagar", message, method: :delete , form: { data: { turbo_confirm: "Quer mesmo apagar este recado?" } }%>
+            <% end %>
+        </div>
     </div>
-
-<% end %>
+</section>
