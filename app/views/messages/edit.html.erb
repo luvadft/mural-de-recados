@@ -6,10 +6,16 @@
             <div class="field">
                 <%= form.label :author, "Seu nome", class: "label" %>
                 <%= form.text_field :author, class: "input" %>
+                <% @message.errors[:author].each do |error| %>
+                    <p class="help is-danger"><%= error %></p>
+                <% end %>
             </div>
             <div class="field">
                 <%= form.label :content, "Recado", class: "label" %>
                 <%= form.text_area :content, class: "textarea" %>
+                <% @message.errors[:content].each do |error| %>
+                    <p class="help is-danger"><%= error %></p>
+                <% end %>
             </div>
                 <%= form.submit "Salvar", class: "button is-primary" %>
                 <%= link_to "Voltar", root_path, class: "button is-warning" %>

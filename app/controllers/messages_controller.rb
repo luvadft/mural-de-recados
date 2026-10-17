@@ -22,9 +22,13 @@ class MessagesController < ApplicationController
   def update
     @message = Message.find(params[:id])
 
-    @message.update(message_params)
+    if @message.update(message_params)
 
-    redirect_to root_path
+      redirect_to root_path
+
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
